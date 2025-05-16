@@ -143,9 +143,28 @@ class _HomePageState extends State<HomePage>{
     _subscription = Geolocator.getPositionStream(
       locationSettings: locationSettings).listen((Position position){
 
+        setState(() {
+          _linhas.add('Latitude: ${position.latitude}  |   Longetude: ${position.longitude}');
+        });
+
+        if(_ultimaLocalizacaoConhecida != null){
+          final distancia = Geolocator.distanceBetween(
+              _ultimaLocalizacaoConhecida!.latitude,
+              _ultimaLocalizacaoConhecida!.longitude,
+              position.latitude,
+              position.longitude
+          );
+
+          _calculoDistacia += distancia;
+        }
+
+        setState(() {
+          _linhas.add('Distancia percorrida - ${_calculoDistacia.toInt()} M');
+        });
+
+        _ultimaLocalizacaoConhecida = position;
     });
   }
-
   void _pararMonitoramento() {
     _subscription?.cancel();
     setState(() {
