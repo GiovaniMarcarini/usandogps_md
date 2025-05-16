@@ -118,7 +118,6 @@ class _HomePageState extends State<HomePage>{
       return false;
     }
     return true;
-
   }
 
   Future<bool> _servicoHabilitado() async {
