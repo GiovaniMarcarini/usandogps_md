@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 
@@ -12,6 +14,9 @@ class HomePage extends StatefulWidget{
 class _HomePageState extends State<HomePage>{
 
   final _linhas = <String>[];
+  StreamSubscription<Position>? _subscription;
+  Position? _ultimaLocalizacaoConhecida;
+  double _calculoDistacia = 0;
 
   @override
   Widget build(BuildContext context){
@@ -33,9 +38,16 @@ class _HomePageState extends State<HomePage>{
         ),
         ElevatedButton(
             onPressed: _obterLocalizacaoAtual,
-            child: const Text('Obeter localização atual')
+            child: const Text('Obter localização atual')
         ),
-
+        ElevatedButton(
+            onPressed: onPressed,
+            child: child
+        ),
+        ElevatedButton(
+            onPressed: _limparLog,
+            child: Text('Limpar Log')
+        ),
         Divider(),
         Expanded(
             child: ListView.builder(
@@ -119,6 +131,12 @@ class _HomePageState extends State<HomePage>{
     }
 
     return true;
+  }
+
+  void _limparLog(){
+    setState(() {
+      _linhas.clear();
+    });
   }
 
   void _mostrarMensagem(String mensagem){
