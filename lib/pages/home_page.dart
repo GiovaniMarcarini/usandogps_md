@@ -17,6 +17,8 @@ class _HomePageState extends State<HomePage>{
   StreamSubscription<Position>? _subscription;
   Position? _ultimaLocalizacaoConhecida;
   double _calculoDistacia = 0;
+  
+  bool get _monitorandoLocalizacao => _subscription != null;
 
   @override
   Widget build(BuildContext context){
@@ -41,8 +43,8 @@ class _HomePageState extends State<HomePage>{
             child: const Text('Obter localização atual')
         ),
         ElevatedButton(
-            onPressed: onPressed,
-            child: child
+            onPressed: _monitorandoLocalizacao ? _pararMonitoramento : _iniciarMonitoramento,
+            child: Text(_monitorandoLocalizacao ? 'Parar monitoramento' : 'Iniciar monitoramento')
         ),
         ElevatedButton(
             onPressed: _limparLog,
@@ -131,6 +133,26 @@ class _HomePageState extends State<HomePage>{
     }
 
     return true;
+  }
+
+  void _iniciarMonitoramento(){
+    const LocationSettings locationSettings = LocationSettings(
+      accuracy: LocationAccuracy.high,
+      distanceFilter: 100
+    );
+    _subscription = Geolocator.getPositionStream(
+      locationSettings: locationSettings).listen((Position position){
+
+    });
+  }
+
+  void _pararMonitoramento() {
+    _subscription?.cancel();
+    setState(() {
+      _subscription = null;
+      _ultimaLocalizacaoConhecida = null;
+      _calculoDistacia = 0;
+    });
   }
 
   void _limparLog(){
