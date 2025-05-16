@@ -1,0 +1,20 @@
+{
+  "buildFiles": [
+    "/Users/giovani/Library/CloudStorage/OneDrive-Pessoal(2)/DEV/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/Users/giovani/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/Users/giovani/StudioProjects/usandogps_md/android/app/.cxx/Debug/5y44703z/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/Users/giovani/Library/Android/sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/Users/giovani/StudioProjects/usandogps_md/android/app/.cxx/Debug/5y44703z/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {}
+}

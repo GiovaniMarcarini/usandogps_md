@@ -1,0 +1,2 @@
+/Users/giovani/StudioProjects/usandogps_md/android/app/.cxx/Debug/5y44703z/armeabi-v7a/CMakeFiles/edit_cache.dir
+/Users/giovani/StudioProjects/usandogps_md/android/app/.cxx/Debug/5y44703z/armeabi-v7a/CMakeFiles/rebuild_cache.dir
